@@ -9,15 +9,13 @@ let losses = 0;
 document.getElementById("losses").innerHTML = losses;
 
 let wordList = [
-    "TYRANNOSAURS",
+    "TYRANNOSAURUS",
     "VELOCIRAPTOR",
     "PTERANODON",
     "STEGOSAURUS",
     "SPINOSAURUS",
     "ANKYLOSAURUS",
     "JURASSIC",
-    "PREHISTORIC",
-    "FOSSIL",
 ];
 
 let wordLength = 0;
@@ -35,14 +33,18 @@ blankWord.innerHTML = (blanksMixed.join(" "))
 // Create array for wrong guesses
 let wrongGuesses = [];
 
+
 let startGame = function () {
     // Reset guesses to 10
     guessesLeft = 10;
 
 }
 
-let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
+let imgTag = document.getElementById('end-image');
+// Hide winning image
+imgTag.style.display = "none";
 
 // Check to see if letter guessed is in current word
 let checkGuess = function (guess) {
@@ -51,7 +53,7 @@ let checkGuess = function (guess) {
     if (!alphabet.includes(guess)) {
         alert("Enter a letter.")
     }
-
+    
     // If guess has already been guessed
     else if (wrongGuesses.includes(guess) || blanksMixed.includes(guess)) {
         alert("Letter already guessed!");
@@ -106,28 +108,23 @@ let afterGuess = function () {
 
 
 console.log(currentWord, numberBlanks)
+console.log("assets/images/dinosaurs/" + currentWord + ".png")
+let imgPath = "assets/images/dinosaurs/" + currentWord + ".png";
 
-let imgPath = "../iamges/dinosaurs/" + currentWord + ".png";
-document.getElementById('end-image');
-imgTag.src = imgPath;
 
 let youWin = function () {
-    // Set winning image
+    imgTag.style.display = "block";
     imgTag.src = imgPath;
-    // Pause for 3 seconds
-    // setTimeout(youWin, 3000);
-    alert("Congrats! You won!");
+    // Audio(currentWord + ".mp3")
+    setTimeout(resetGame, 2500);
     wins++;
-    resetGame();
 }
 
-
-
 let youLose = function () {
-    setTimeout(youWin, 5000);
-    alert("You lose!")
+    imgTag.style.display = "block";
+    imgTag.src = "assets/images/youlose.gif";
+    setTimeout(resetGame, 2500);
     losses++;
-    resetGame();
 }
 
 
@@ -143,6 +140,10 @@ let resetGame = function () {
     wrongGuesses = [];
     // Reset number of guesses left
     guessesLeft = 10;
+    // Reset Image Path for winning image
+    imgPath = "assets/images/dinosaurs/" + currentWord + ".png";
+    // Emtpy Image
+    imgTag.style.display = "none";
     // Update display data
     document.getElementById("guessesLeft").innerHTML = guessesLeft;
     document.getElementById("wins").innerHTML = wins;
@@ -153,9 +154,9 @@ let resetGame = function () {
     }
     document.getElementById("blankWord").innerHTML = blanksMixed.join(" ");
     console.log(currentWord, numberBlanks)
+    
 };
 
 // Start New Game Button
 let startButton = document.getElementById('reset-game');
 startButton.onclick = resetGame;
-

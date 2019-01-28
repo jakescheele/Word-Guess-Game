@@ -25,3 +25,7 @@ body {
 .col-md-4 {
     align-content: center;
 }
+#end-image {
+    height: 200px;
+    width: 300px;
+}
