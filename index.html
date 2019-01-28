@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Prehistoric Hangman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Linking CSS File-->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
@@ -13,7 +13,9 @@
         crossorigin="anonymous">
 </head>
 
-<body background="assets/images/prehistoric-background-dinosaur.jpg">
+
+<body>
+
     <header class="justify-content-center">
         <div class="container">
             <div>
@@ -31,22 +33,21 @@
 
         <div class="container">
 
-            <div class="row justify-content-center">
+            <div class="row my-20">
 
                 <div class="col-md-2">
                 </div> <!--- margin col--->
 
-                <div class="col-md-8" id="main-content">
-
+                <div class="col-md-8" id="paper">
                     <div class="row">
                         <div class="col-md-4">
                           <h3>Guesses Left:  <strong id="guessesLeft"></strong></h3>
                         </div>
                         <div class="col-md-4">
-                          <h3>Wins:  <strong id="wins"></strong></h3>
+                          <h3>Wins:  <br><strong id="wins"></strong></h3>
                         </div>
                         <div class="col-md-4">
-                          <h3>Losses:  <strong id="losses"></strong></h3>
+                          <h3>Losses:  <br><strong id="losses"></strong></h3>
                         </div>
                     </div>
 
@@ -61,14 +62,17 @@
                     <div class="row">
                         <button id="reset-game">Start New Game</button>
                     </div>
-
-                </div>
+                </div> <!----jumbotron col-md-8 main-content------->
 
                 <div class="col-md-2">
                 </div> <!--margin col--->
 
             </div>
             <!--row-->
+
+            <div class="row">
+                <img/>
+            </div> <!--row-->
 
         </div>
         <!--container-->

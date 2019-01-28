@@ -11,7 +11,7 @@ document.getElementById("losses").innerHTML = losses;
 let wordList = [
     "TYRANNOSAURS",
     "VELOCIRAPTOR",
-    "PTERADACTYL",
+    "PTERANODON",
     "STEGOSAURUS",
     "SPINOSAURUS",
     "ANKYLOSAURUS",
@@ -41,14 +41,19 @@ let startGame = function () {
 
 }
 
-
+let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 
 // Check to see if letter guessed is in current word
 let checkGuess = function (guess) {
 
+    // If character entered is not A-Z
+    if (!alphabet.includes(guess)) {
+        alert("Enter a letter.")
+    }
+    
     // If guess has already been guessed
-    if (wrongGuesses.includes(guess) || blanksMixed.includes(guess)) {
+    else if (wrongGuesses.includes(guess) || blanksMixed.includes(guess)) {
         alert("Letter already guessed!");
     }
 
@@ -110,6 +115,7 @@ let youWin = function () {
 }
 
 let youLose = function () {
+    setTimeout(youLose, 5000);
     alert("You lose!")
     losses++;
     resetGame();

@@ -5,3 +5,23 @@ h1 {
 h3 {
     color: white !important;
 }
+.row {
+    justify-content: center;
+}
+body {
+    background-image: url("../images/prehistoric-background-dinosaur.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron {
+    background:transparent !important;
+}
+#paper {
+    background-image: url(../images/paper.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 25px 50px 50px 50px;
+}
+.col-md-4 {
+    align-content: center;
+}
