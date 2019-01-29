@@ -20,6 +20,8 @@ let wordList = [
 
 let wordLength = 0;
 
+let gameStatus = "play";
+
 // Set random word from word list
 let currentWord = wordList[Math.floor(Math.random() * wordList.length)];
 // Set number of blanks var to length of current word
@@ -44,7 +46,7 @@ let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 
 let imgTag = document.getElementById('end-image');
 // Hide winning image
-imgTag.style.display = "none";
+imgTag.setAttribute('class', 'hide')
 
 // Check to see if letter guessed is in current word
 let checkGuess = function (guess) {
@@ -86,9 +88,9 @@ let checkGuess = function (guess) {
 document.onkeypress = function (event) {
     const letterGuessed = event.key.toUpperCase();
     console.log(letterGuessed)
+    if (gameStatus = "play") {
     checkGuess(letterGuessed)
-
-    afterGuess();
+    afterGuess(); }
 }
 
 // Runs after each guess
@@ -106,30 +108,41 @@ let afterGuess = function () {
     }
 }
 
-
 console.log(currentWord, numberBlanks)
 console.log("assets/images/dinosaurs/" + currentWord + ".png")
 let imgPath = "assets/images/dinosaurs/" + currentWord + ".png";
 
 
 let youWin = function () {
-    imgTag.style.display = "block";
+    gameStatus = "over";
+    // Update winning image
+    imgTag.classList.remove('hide');
     imgTag.src = imgPath;
-    // Audio(currentWord + ".mp3")
+    // Play winning audio
+    let audio = new Audio('assets/audio/' +  currentWord + ".wav");
+    audio.play();
+    // Pause for 2.5 seconds then reset game
     setTimeout(resetGame, 2500);
     wins++;
 }
 
 let youLose = function () {
-    imgTag.style.display = "block";
+    gameStatus = "over";
+    // Update losing gifs
+    imgTag.classList.remove('hide');
     imgTag.src = "assets/images/youlose.gif";
+    // Play losing audio
+    let losingAudio = new Audio('assets/audio/didntsaymagicwords.mp3.m4a');
+    losingAudio.play();
+    // Pause for 2.5 seconds then reset game
     setTimeout(resetGame, 2500);
-    losses++;
+    losses++;  
 }
 
 
 
 let resetGame = function () {
+    gameStatus = "play";
     // Reset Blanks
     blanksMixed = [];
     // Reset word to new random word
@@ -143,7 +156,7 @@ let resetGame = function () {
     // Reset Image Path for winning image
     imgPath = "assets/images/dinosaurs/" + currentWord + ".png";
     // Emtpy Image
-    imgTag.style.display = "none";
+    imgTag.setAttribute('class', 'hide')
     // Update display data
     document.getElementById("guessesLeft").innerHTML = guessesLeft;
     document.getElementById("wins").innerHTML = wins;
